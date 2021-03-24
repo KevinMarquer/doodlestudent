@@ -1,15 +1,51 @@
-# Remote meetings planning
+# Kévin MARQUER
+# Projet TLC
 
-This project is used in a course on the *ops* part at the [University of Rennes](https://www.univ-rennes1.fr/), France. It is a kind of doodle clone developed in so-called "native cloud" technologies in order to allow students to work on a continuous deployment chain in a containerized environment. Among the feature, the application automatically initializes a pad for the meeting and a chat room for the meeting participants.
 
-- The [back](https://github.com/barais/doodlestudent/tree/main/api) is developed using the [quarkus.io](https://quarkus.io/) framework. 
-- The [front](https://github.com/barais/doodlestudent/tree/main/front) is developed in [angular](https://angular.io/) using the [primeng](https://www.primefaces.org/primeng/)  angular UI component library and the [fullcalendar](https://fullcalendar.io/) graphical component.
+Ce projet consiste en la réalisation d'un déploiement d'une application sur une machine virtuelle.
 
-A demo of the application is available [here](https://doodle.diverse-team.fr/).
+On part sur la création de la machine virtuelle comme indiqué.
 
-Three videos (in french) are available. They present:
-- the [main application feature](https://drive.google.com/file/d/1GQbdgq2CHcddTlcoHqM5Zc8Dw5o_eeLg/preview), 
-- its [architecture](https://drive.google.com/file/d/1l5UAsU5_q-oshwEW6edZ4UvQjN3-tzwi/preview) 
-- and a [short code review](https://drive.google.com/file/d/1jxYNfJdtd4r_pDbOthra360ei8Z17tX_/preview) .
+Tout d'abord, on part sur la création du docker-compose.yml.
+Il est composé de 4 services:
+    - Le front
+    - Le back
+    - La base de donnée bdd
+    - L'etherpad
 
-For french native speaker that wants to follow the course. The course web page is available [here](https://hackmd.diverse-team.fr/s/SJqu5DjSD).
+Les configurations à faire pour les services sont indiqué sur les premières étapes du projet.
+
+Ensuite, j'essaie de tester en local le lancement de l'application par docker-compose.
+Avant cela, on n'oublit pas d'ajouter les valeurs utilisé dans docker-compose dans application.yml
+
+Et pour finir dans api.conf de mettre le nom de l'host kmarquer.diverse-team.fr et de réalisé :
+```
+sudo nano -w /ect/hosts
+```
+Afin d'ajouter kmarquer.diverse-team.fr dedans.
+
+Ensuite On commence par build le dockerfile (on utilise Dockerfile.jmv les autres étant trop lourd)
+
+Puis on fait sudo docker-compose up
+
+Le lancement de l'appli se fait sur chrome en navigation privée.
+Le lancement de l'application en "local" marche, mais il y a un problème qui empèche l'ouverture de la troisième page de l'application.
+Il doit y avoir un oublit de ma part dans le docker-compose.
+Maleureusement, j'ai perdu du temps à chercher le problème et entre les autres projets et l'alterance, le projet à ralentie.
+
+Par concéquent, j'ai du continuer avec ce défaut.
+
+Concernant l'implémentation du projet sur la machine virtuelle.
+Le déployement ce fait plus simple que je ne le pensait.
+J'ai un git clone du projet.
+
+Mais voilà lors du test, il y a eu blocage
+premièrement il n'y a pas docker-compose dans la machine virtuelle
+(ce qui n'aurai pas été un problème en faisant un apt-get)
+
+MAIS je ne peut réalisé un sudo sur la machine virtuelle.
+(voir dans le dossier image)
+
+Est-ce-que j'ai fait une mauvaise manipulation, ai-je oublier de demandé des droits.
+Je reconnais être revenue sur la machine virtuelle 2 mois plus tard et et ne l'avoir quasi jamais utilisé.
+Donc malheureusement je ne peut poursuivre à cause de ce bloquage.
